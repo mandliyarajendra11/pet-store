@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart  } from 'react-icons/fi';
+import {CgClose,CgMenu}from "react-icons/cg";
 const Nav = () => {
-
+  const [activeClass,setActiveClass]=useState();
     const Nav = styled.nav`
     .navbar-lists {
       display: flex;
@@ -137,16 +138,19 @@ const Nav = () => {
     `;
     return (
     <Nav>
-        <div className='navbar'>
+        <div className={activeClass?"navbar active":"navbar"} >
             <ul className='navbar-lists'>
                 <li> <NavLink to='/' className="navbar-link">Home</NavLink></li>
                 <li><NavLink to='/about' className="navbar-link">About</NavLink></li>
                 <li><NavLink to='/products' className="navbar-link">products</NavLink></li>
                 <li><NavLink to='/contact' className="navbar-link">contact</NavLink></li>
                 <li><NavLink to='/cart' className="navbar-link cart-trolley--link"><FiShoppingCart className="cart-trolley"/><span className='.cart-total--item'>10</span></NavLink></li>
-
-               
+            
             </ul>
+            <div className='mobile-navbar-btn'>
+              <CgMenu name="menu"  onClick={()=>setActiveClass(true)}  className="mobile-nav-icon"/>
+              <CgClose name="close"  onClick={()=>setActiveClass(false)} className="mobile-nav-icon close-outline "/>
+            </div>
         </div>
     </Nav>
   )

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const Header = () => {
   return (
     <MainHeader>
-                <NavLink to='/'>Pet Store</NavLink>
+                <NavLink to='/'><h2>Pet Store</h2></NavLink>
       <Nav/>
     </MainHeader>
   )

@@ -1,9 +1,14 @@
 import React from 'react'
-
+import HeroSection from './components/HeroSection';
+import Services from './components/Services';
+import Trusted from './components/Trusted';
 const Home = () => {
   return (
-    <div>Home</div>
+    <> 
+    <HeroSection name={"pet store"}/>
+    <Services/>
+    <Trusted/>
+    </>
   )
 }
-
 export default Home
