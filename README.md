@@ -1,1 +1,1 @@
-# Welcome to rajendra mandliya React Ecommerce Website Series
+# Welcome to rajendra mandliya React Ecommerce Website
