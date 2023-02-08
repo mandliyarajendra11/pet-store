@@ -13,7 +13,7 @@ function SingleProduct() {
   //url id which is declear in app page router routes singleproduct 
   const {getSingleProduct,SingleProducts,SingleLoading}=useProductContext();
   const {id}=useParams();
-  const {id:no,name,company,price,description,category,stock,stars,reviews,images}=SingleProducts
+  const {id:no,name,company,price,description,category,stock,stars,reviews,image}=SingleProducts
   useEffect(()=>{
     getSingleProduct(`${url}?id=${id}`);
   },[])
@@ -24,7 +24,7 @@ function SingleProduct() {
     <Container className="container">
       <div className="grid grid-two-column">
 <div className="product_images">
-<MyIMG images={images}/>
+<MyIMG img={image}/>
 </div>
 <div className="product-data">
 <h2>{name}</h2>
