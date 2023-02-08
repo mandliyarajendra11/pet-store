@@ -11,10 +11,14 @@ const initialState={
     isError:false,
     products:[],
 //vo product jinko home page me dalna hai unki value true ha feature product me 
-    featureProducts:[]
+    featureProducts:[],
+    SingleLoading:false,
+    SingleProducts:{}
 }
  const Provider=({children})=>{
     const [state,dispatch]=useReducer(reducer,initialState)
+   
+   
     const getProduct=async(url)=>{
         dispatch({type:"LOADING"})
         try{
@@ -26,6 +30,18 @@ dispatch({type:"MY_API_DATA",payload:products});
     }
 }
 
+const getSingleProduct=async(url)=>{
+    dispatch({type:"single_data_loading"})
+    try{
+    const res=await axios.get(url);
+    const Singleproducts=await res.data;
+    dispatch({type:"Set_Single_Product",payload:Singleproducts})
+    }
+    catch(error){
+        dispatch({type:"Set_Single_Error"});
+    }
+}
+
 useEffect(()=>{
 
     getProduct(API)
@@ -33,7 +49,7 @@ useEffect(()=>{
 },[])
 
 //always write children
-return <myContext.Provider value={{...state}}>{children}</myContext.Provider>
+return <myContext.Provider value={{...state,getSingleProduct}}>{children}</myContext.Provider>
 }
 const useProductContext=()=>{
     return useContext(myContext)

@@ -1,9 +1,74 @@
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useProductContext } from "./context/productContext";
+import PageNavigation from "./components/PageNavigation";
+import MyIMG from "./components/MyIMG";
+import { Container } from "./styles/Container";
+import FormatPrice from './Helpers/FormatPrice'
+import {TbTruckDelivery ,TbReplace} from 'react-icons/tb'
+import { MdSecurity } from 'react-icons/md'
+const url ="https://api.pujakaitem.com/api/products"
+function SingleProduct() {
+  //url id which is declear in app page router routes singleproduct 
+  const {getSingleProduct,SingleProducts,SingleLoading}=useProductContext();
+  const {id}=useParams();
+  const {id:no,name,company,price,description,category,stock,stars,reviews,images}=SingleProducts
+  useEffect(()=>{
+    getSingleProduct(`${url}?id=${id}`);
+  },[])
+  if(SingleLoading)
+ return <h3>data is loading</h3>
+ return <Wrapper>
+    <PageNavigation title={name}/>
+    <Container className="container">
+      <div className="grid grid-two-column">
+<div className="product_images">
+<MyIMG images={images}/>
+</div>
+<div className="product-data">
+<h2>{name}</h2>
+<p>{stars}</p>
+<p>{reviews} reviews</p>
+<p className="product-data-price">
+  MRP:
+  <del>
+    <FormatPrice price={price*price/2}/>
+  </del>
+</p>
+<p className="product-data-price product-data-real-price">
+  Deal of the day <FormatPrice price={price} / >
+</p>
+<p>{description}</p>
 
-function SingleProduct(params) {
-  
-  return <Wrapper></Wrapper>;
+<div className="product-data-warranty">  
+  <div className="product-warranty-data">
+  <TbTruckDelivery className="warranty-icon"/>
+  <p>Free Delivery</p>
+</div>
+
+<div className="product-warranty-data">
+  <TbReplace className="warranty-icon"/>
+  <p>Free Delivery</p>
+</div>
+
+<div className="product-warranty-data">
+  <MdSecurity className="warranty-icon"/>
+  <p>Free Delivery</p>
+</div>
+
+</div>
+<div className="product-data-info">
+  <p>Available : <span> {stock? "In stock":"out of stock"}</span></p>
+<p>ID : <span>{no}</span></p>
+<p>Brand : <span>{company}</span></p>
+</div>
+</div>
+      </div>
+    </Container>
+  </Wrapper>;
 }
+
 
 const Wrapper = styled.section`
   .container {
