@@ -22,32 +22,56 @@ switch(action.type){
             grid_view:false,
         } 
         case "GET_SORTVALUE" :
-            let userSortValue=document.getElementById("sort");
-           let sort_value=userSortValue.options[userSortValue.selectedIndex].value;
-        
            return{
                 ...state,
-                sorting_value:sort_value
+                sorting_value:action.payload
             }
             case "SORTING_PRODUCTS":
-                let tempSortProduct=[...action.payload];
+                let tempSortProduct=[...state.filter_products];
                 let newSortData;
-                if(state.sorting_value==="a-z")
+                switch(state.sorting_value){
+                case "a-z":{
                 newSortData=tempSortProduct.sort((a,b)=>a.name.localeCompare(b.name));
-                
-                if(state.sorting_value==="z-a")
+                break;}
+                case "z-a":{
                 newSortData=tempSortProduct.sort((a,b)=>b.name.localeCompare(a.name));
-                
-                if(state.sorting_value==="lowest")
+                break;}
+                case "lowest":{
                 newSortData=tempSortProduct.sort((a,b)=>a.price-b.price);
-                
-                if(state.sorting_value==="highest")
+                break;}
+                case "highest":{
                 newSortData=tempSortProduct.sort((b,a)=>a.price-b.price);
-                console.log(newSortData) 
+                break;}
+                default : newSortData=tempSortProduct.sort((a,b)=>a.price-b.price);
+            }
                 return {
                     ...state,
                     filter_products:newSortData
                 }
+                case "Update_Filters_Value":
+                    const {name,val}=action.payload
+                   
+                    return {
+                        ...state,
+                        filters:{
+                            ...state.filters,
+                            [name]:val,
+
+                        }
+                    }
+                    case "Filter_Products":
+                        let {all_products}=state
+                        let tempFilterProduct=[...all_products]
+
+                        const {text}=state.filters
+                        if(text){
+                            tempFilterProduct=tempFilterProduct.filter((ele)=>ele.name.toLowerCase().includes(text));
+                            console.log(tempFilterProduct)
+                        }
+                        return {
+                            ...state,
+                            filter_products:tempFilterProduct
+                        }
     default : return state
 }
 
