@@ -6,10 +6,16 @@ const FilterContext = createContext();
 const initialState={
     filter_products:[],
     all_products:[],
-    grid_view:false,
+    grid_view:true,
     sorting_value:"lowest",
     filters:{
         text:"",
+        category:"all",
+        company:"all",
+        colors:"all",
+        maxPrice:0,
+        price:0,
+        minPrice:0
     }
 }
 export const FilterContextProvider=({children})=>{
@@ -36,6 +42,10 @@ export const FilterContextProvider=({children})=>{
         return dispatch({type:"Update_Filters_Value",payload:{name,val}})
     }
 
+    const clearFilters=()=>{
+        dispatch({type:"CLEAR_FILTERS"});
+    }
+    
     useEffect(()=>{
         dispatch({type:"Filter_Products"})
         //note - after filter product we want sorting call again so we put in same use effect 
@@ -47,7 +57,7 @@ dispatch({type:"LOAD_FILTER_PRODUCTS",payload:products})
 },[products])
 
 return (
-    <FilterContext.Provider value={{...state,set_grid,set_list,sorting,updateFilterValue}}>
+    <FilterContext.Provider value={{...state,set_grid,set_list,sorting,updateFilterValue,clearFilters}}>
         {children}
     </FilterContext.Provider>
 )

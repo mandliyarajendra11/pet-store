@@ -4,11 +4,15 @@ switch(action.type){
 
     // case "Loading"
     case "LOAD_FILTER_PRODUCTS":
+        let prices=action.payload.map((ele)=>ele.price)
+        //we also have many defferent method like apply Math.max.apply(null,price);and reduce
+        let maxPrice=Math.max(...prices);
         return{
             ...state,
             //we does not want to change our orignal data so we use [...] 
             filter_products:[...action.payload],
             all_products: [...action.payload],
+            filters:{...state.filters,maxPrice}
         }
      case "SET_GRIDVIEW" :
         return {
@@ -63,15 +67,41 @@ switch(action.type){
                         let {all_products}=state
                         let tempFilterProduct=[...all_products]
 
-                        const {text}=state.filters
-                        if(text){
+                        const {text,category,company,colors,price}=state.filters
+                        if(text)
                             tempFilterProduct=tempFilterProduct.filter((ele)=>ele.name.toLowerCase().includes(text));
-                            console.log(tempFilterProduct)
-                        }
+                        
+                            if(category.toLowerCase()!=='all')
+                        tempFilterProduct=tempFilterProduct.filter((ele)=>ele.category===category)
+                        
+                        
+                            if(company.toLowerCase()!=='all')
+                            tempFilterProduct=tempFilterProduct.filter((ele)=>ele.company.toLowerCase()===company.toLowerCase())
+                        
+                        if(colors.toLowerCase()!=='all')
+                        tempFilterProduct=tempFilterProduct.filter((ele)=>ele.colors.includes(colors))
+                        
+                        if(price)
+                        tempFilterProduct=tempFilterProduct.filter((ele)=>ele.price>=price)
                         return {
                             ...state,
                             filter_products:tempFilterProduct
                         }
+                        case "CLEAR_FILTERS":
+                            return {
+                                ...state,
+                                sorting_value:"lowest",
+                                filters:{
+                                    ...state.filters,
+                                    text:"",
+                                    category:"all",
+                                    company:"all",
+                                    colors:"all",
+                                    maxPrice:state.filters.maxPrice,
+                                    price:0,
+                                    minPrice:0
+                                }
+                            }
     default : return state
 }
 

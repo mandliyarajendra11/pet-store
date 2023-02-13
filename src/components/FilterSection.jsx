@@ -1,14 +1,72 @@
 import styled from 'styled-components';
 import { useFilterContext } from '../context/FilterContext'
+import {FaCheck}from 'react-icons/fa'
+import FormatPrice from '../Helpers/FormatPrice'
+import {Button} from '../styles/Button'
 const FilterSection = () => {
-  const {filters:{text},updateFilterValue}=useFilterContext();
-  return (
+  const {filters:{text,colors,price,maxPrice,minPrice},updateFilterValue,all_products,clearFilters}=useFilterContext();
+  const getUniqueData=(data,property)=>{
+    let newVal=data.map((ele)=>
+    {
+      return ele[property]
+    }
+    )
+    return newVal=['All',...new Set(newVal)];
+    // console.log(newVal)
+
+  }
+
+  const categoryData=getUniqueData(all_products,"category");
+ const companyData=getUniqueData(all_products,"company")
+ let colorsData=getUniqueData(all_products,"colors")
+ 
+ colorsData=[...new Set(colorsData.flat(Infinity))]
+ 
+
+ return (
     <Wrapper>
       <div className='filter-search'>
         <form onSubmit={(e)=>e.preventDefault()}>
-        <input type="text" name='text' value={text} onChange={updateFilterValue} />
+        <input type="text" name='text' placeholder='search' value={text} onChange={updateFilterValue} />
         </form>
       </div>
+      <div className='filter-category'>
+        <h3>category</h3>
+        <div>
+        {
+        categoryData.map((ele,i)=><button key={i} type="button" name='category' value={ele} onClick={updateFilterValue}>{ele}</button>)
+      }
+      </div>
+      </div>
+      
+      <div className='filter-company'>
+        <h3>company</h3>
+        <select name='company' id='company' className='filter-company--select' onChange={updateFilterValue}>
+        {
+        companyData.map((ele,i)=><option key={i} name="company" value={ele} >{ele}</option>)
+      }
+      </select>
+      </div>
+      <div className='filter-colors colors'>
+        <h3>colors</h3>
+        
+        <div className="filter-color-style">
+          {
+            colorsData.map((ele ,i)=> ele==='All' ?<button type='button' className='color-all--style'
+             name="colors" value={ele}
+            key={i} onClick={updateFilterValue}>{ele}</button>: <button type='button'
+             className={colors===ele ?"btnStyle active":"btnStyle"}style={{backgroundColor:ele}} name="colors" value={ele}
+             key={i} onClick={updateFilterValue}>{colors===ele?<FaCheck className='checkStyle'/>:null}</button>)
+          }
+        </div>
+      </div>
+
+      <div className="filter_price">
+        <h3>price</h3>
+        <p><FormatPrice price={price}/></p>
+        <input type="range" min={minPrice} max={maxPrice} name="price" value={price} onChange={updateFilterValue} />
+        </div>
+        <div className="filter-clear"><Button className='btn' onClick={clearFilters}>Clear Filter</Button></div>
     </Wrapper>
   )
 }
