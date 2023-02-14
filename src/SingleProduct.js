@@ -9,12 +9,13 @@ import FormatPrice from './Helpers/FormatPrice'
 import {TbTruckDelivery ,TbReplace} from 'react-icons/tb'
 import { MdSecurity } from 'react-icons/md'
 import Star from "./components/Star";
+import AddToCart from "./components/AddToCart";
 const url ="https://api.pujakaitem.com/api/products"
 function SingleProduct() {
   //url id which is declear in app page router routes singleproduct 
   const {getSingleProduct,SingleProducts,SingleLoading}=useProductContext();
   const {id}=useParams();
-  const {id:no,name,company,price,description,category,stock,stars,reviews,image}=SingleProducts
+  const {id:no,name,company,price,description,stock,stars,reviews,image}=SingleProducts
   useEffect(()=>{
     getSingleProduct(`${url}?id=${id}`);
   },[])
@@ -63,6 +64,8 @@ function SingleProduct() {
 <p>ID : <span>{no}</span></p>
 <p>Brand : <span>{company}</span></p>
 </div>
+<hr/>
+{stock>0 && <AddToCart product={SingleProducts}/>}
 </div>
       </div>
     </Container>

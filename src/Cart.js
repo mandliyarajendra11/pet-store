@@ -1,8 +1,49 @@
 import styled from "styled-components";
-
+import { useCartContext } from "./context/cartContext";
+import CartItem from "./components/CartItem";
+import { NavLink } from "react-router-dom";
+import { Button } from "./styles/Button";
 const Cart = () => {
-  return <Wrapper></Wrapper>;
+  const {cart ,ClearCart}=useCartContext();
+  if(cart.length===0)return <EmptyDiv>
+    <h3>no data</h3>
+  </EmptyDiv>
+  return <Wrapper>
+
+    <div className="container">
+      <div className="cart_heading grid grid-five-column">
+        <p>Item</p>
+        <p className="cart-hide">Price</p>
+    <p>Quantity</p>
+    <p className="cart-hide">Subtotal</p>
+     <p>Remove</p>
+      </div>
+      <hr/>
+      <div className="card-item">
+        {
+         cart.map((ele)=><CartItem key={ele.id} {...ele}/> )
+        }
+      </div>
+      <hr/>
+      <div className="cart-two-button">
+        <NavLink to='/products'>
+          <Button>continue Shopping</Button>
+        </NavLink>
+        <Button className="btn btn-clear" onClick={ClearCart} >Clear cart</Button>
+      </div>
+    </div>
+  </Wrapper>;
 };
+const EmptyDiv = styled.div`
+  display: grid;
+  place-items: center;
+  height: 50vh;
+  h3 {
+    font-size: 4.2rem;
+    text-transform: capitalize;
+    font-weight: 300;
+  }
+`;
 
 const Wrapper = styled.section`
   padding: 9rem 0;
