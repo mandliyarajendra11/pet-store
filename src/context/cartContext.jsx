@@ -20,6 +20,14 @@ const CartProvider=({children})=>{
     const addToCart=(id,color,amount,product)=>{
         dispatch({type:"ADD_TO_CART",payload:{id,color,amount,product}})
     }
+    const SetIncrement=(id)=>{
+        dispatch({type:"SET_INC",payload:id})
+    }
+    
+    const SetDecrement=(id)=>{
+        dispatch({type:"SET_DEC",payload:id})
+
+    }
     const RemoveCart=(id)=>{
         dispatch({type:"REMOVE",payload:id})
     }
@@ -27,10 +35,11 @@ const CartProvider=({children})=>{
         dispatch({type:"CLEAR"})
     }
     useEffect(()=>{
+        dispatch({type:"CART_TOTAL_ITEM"})
         localStorage.setItem("thapaCart", JSON.stringify(state.cart));
     },[state.cart])
 
-    return <CartContext.Provider value={{...state,addToCart,RemoveCart,ClearCart}}>{children}</CartContext.Provider>
+    return <CartContext.Provider value={{...state,addToCart,RemoveCart,ClearCart,SetDecrement,SetIncrement}}>{children}</CartContext.Provider>
 }
 const useCartContext=()=>{
     return useContext(CartContext);

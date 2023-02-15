@@ -5,10 +5,7 @@ import FormatPrice from '../Helpers/FormatPrice'
 import CartAmountToggle from './CartAmoutToggle'
 
 const CartItem = ({id,name,image,price,color,amount,max}) => {
-    const setDecrease=()=>{Amount>1?setAmount(Amount-1):setAmount(1)};
-    const setIncrease=()=>{Amount<max?setAmount(Amount+1):setAmount(max)};
-    const [Amount,setAmount]=useState(amount) 
-    const {RemoveCart} =useCartContext();
+    const {RemoveCart ,SetIncrement,SetDecrement} =useCartContext();
     return (
     <div className='cart_heading grid grid-five-column'>
         <div className="cart-image--name">
@@ -25,11 +22,11 @@ const CartItem = ({id,name,image,price,color,amount,max}) => {
             <p><FormatPrice price={price}/></p>
         </div>
         <CartAmountToggle
-         amount={Amount} 
-        setDecrease={setDecrease}
-        setIncrease={setIncrease}/>
+         amount={amount} 
+        setDecrease={()=>SetDecrement(id)}
+        setIncrease={()=>SetIncrement(id)}/>
         <div className="cart-hide">
-            <p><FormatPrice price={price*Amount}/></p>
+            <p><FormatPrice price={price*amount}/></p>
         </div>
         <div>
             <FaTrash className='remove_icon' onClick={()=>{RemoveCart(id)}}  />

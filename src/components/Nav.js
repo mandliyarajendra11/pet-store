@@ -3,7 +3,9 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiShoppingCart  } from 'react-icons/fi';
 import {CgClose,CgMenu}from "react-icons/cg";
+import { useCartContext } from '../context/cartContext';
 const Nav = () => {
+const {total_item}=useCartContext()
   const [activeClass,setActiveClass]=useState();
     const Nav = styled.nav`
     .navbar-lists {
@@ -144,7 +146,7 @@ const Nav = () => {
                 <li><NavLink to='/about' className="navbar-link">About</NavLink></li>
                 <li><NavLink to='/products' className="navbar-link">products</NavLink></li>
                 <li><NavLink to='/contact' className="navbar-link">contact</NavLink></li>
-                <li><NavLink to='/cart' className="navbar-link cart-trolley--link"><FiShoppingCart className="cart-trolley"/><span className='.cart-total--item'>10</span></NavLink></li>
+                <li><NavLink to='/cart' className="navbar-link cart-trolley--link"><FiShoppingCart className="cart-trolley"/><span className='cart-total--item'>{total_item}</span></NavLink></li>
             
             </ul>
             <div className='mobile-navbar-btn'>

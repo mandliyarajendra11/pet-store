@@ -58,7 +58,57 @@ const CartReducer = (state,action) => {
                     ...state,
                     cart:[]
                 }
-        default:return state;
+                case "SET_INC":
+                  let updatedProduct = state.cart.map((curElem) => {
+                if (curElem.id === action.payload) {
+                  let incAmount = curElem.amount + 1;
+          
+                  if (incAmount >= curElem.max) {
+                    incAmount = curElem.max;
+                  }
+          
+                  return {
+                    ...curElem,
+                    amount: incAmount,
+                  };
+                } else {
+                  return curElem;
+                }});             
+    return { ...state, cart: updatedProduct };
+         
+                case "SET_DEC":
+                  let updatedProducts = state.cart.map((curElem) => {
+                    if (curElem.id === action.payload) {
+                      let decAmount = curElem.amount - 1;
+              
+                      if (decAmount <= 1) {
+                        decAmount = 1;
+                      }
+              
+                      return {
+                        ...curElem,
+                        amount: decAmount,
+                      };
+                    } else {
+                      return curElem;
+                    }
+                  });
+                  return { ...state, cart: updatedProducts };
+                  case "CART_TOTAL_ITEM":
+                   let updateAmount_Item=state.cart.reduce((acc,curr)=>{
+                    acc.price+=(curr.price*curr.amount);
+                    acc.item+=curr.amount;
+                    return acc;
+                  },
+                  //using accumlator as a opject (accum receive initial value so we pass this price item)
+                    {price:0,item:0})
+                    return {
+                      ...state,
+                      total_item:updateAmount_Item.item,
+                      total_amount:updateAmount_Item.price,
+                      shipping_fee:updateAmount_Item.price/50 
+                    }
+                  default:return state;
             
     }
 }
