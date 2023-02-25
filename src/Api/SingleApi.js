@@ -104,7 +104,7 @@ const thapaserialnob = {
 const thapaserialnod = {
   id: "thapaserialnod",
   name: "Nokia 420",
-  company: "indian",
+  company: "desi",
   price: 102999,
   colors: ["#000000", "#CDD0D0"],
   description:
@@ -156,7 +156,7 @@ const thapaserialnod = {
 const thapaserialnoe = {
   id: "thapaserialnoe",
   name: "Mac Pc",
-  company:"us",
+  company:"jangli",
   price: 200999,
   colors: ["#000", "#CDD0D0"],
   description:

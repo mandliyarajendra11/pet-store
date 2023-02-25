@@ -69,7 +69,7 @@ switch(action.type){
 
                         const {text,category,company,colors,price}=state.filters
                         if(text)
-                            tempFilterProduct=tempFilterProduct.filter((ele)=>ele.name.toLowerCase().includes(text));
+                            tempFilterProduct=tempFilterProduct.filter((ele)=>ele.name.includes(text));
                         
                             if(category.toLowerCase()!=='all')
                         tempFilterProduct=tempFilterProduct.filter((ele)=>ele.category===category)
@@ -99,6 +99,7 @@ switch(action.type){
                                     colors:"all",
                                     maxPrice:state.filters.maxPrice,
                                     price:0,
+                                
                                     minPrice:0
                                 }
                             }

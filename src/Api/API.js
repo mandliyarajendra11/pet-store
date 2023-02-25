@@ -2,7 +2,7 @@ const data = [
     {
       id: "thapaserialnod",
       name: "Lilibet ",
-      company: "dogs",
+      company: "desi",
       price: 6000000,
       colors: ["#ff0000", "#000000", "#CDD0D0"],
       image:
@@ -15,7 +15,7 @@ const data = [
     {
       id: "thapaserialnod",
       name: "African Wild Dog",
-      company: "dogs",
+      company: "african",
       price: 5000000,
       colors: ["#000", "#22D3EF"],
       image:
@@ -28,7 +28,7 @@ const data = [
     {
       id: "thapaserialnod",
       name: "Eskimo Dog",
-      company: "dell",
+      company: "videsi",
       price: 600000,
       colors: ["#22D3EF", "#CDD0D0"],
       image:
@@ -40,7 +40,7 @@ const data = [
     {
       id: "thapaserialnob",
       name: "Blue Catfish",
-      company: "nokia",
+      company: "desi",
       price: 12599,
       colors: ["#000", "#000000", "#CDD0D0"],
       image:
@@ -53,7 +53,7 @@ const data = [
     {
       id: "thapaserialnob",
       name: "Banjo Catfis",
-      company: "apple",
+      company: "jangli",
       price: 4000099,
       colors: ["#000", "#CDD0D0"],
       image:
@@ -66,7 +66,7 @@ const data = [
     {
       id: "thapaserialnob",
       name: "Australian Cattle",
-      company: "apple",
+      company: "videsi",
       price: 42999,
       colors: ["#000000", "#CDD0D0"],
       image:"images/pet/cat 3.jpg",
@@ -78,7 +78,7 @@ const data = [
     {
       id: "thapaserialnoe",
       name: "Lion’s Mane Jellyfish",
-      company: "asus",
+      company: "russion",
       price: 23999,
       colors: ["#CDD0D0", "#000"],
       image:
@@ -92,7 +92,7 @@ const data = [
       id: "thapaserialnoe",
       name: "Golden Lion Tamarin",
       price: 1099999,
-      company: "lenova",
+      company: "indian",
       colors: ["#000", "#CDD0D0"],
       image:
         "images/pet/lion 2.jpg",
@@ -106,7 +106,7 @@ const data = [
       id: "thapaserialnoe",
       name: "Cape Lion",
       price: 39999,
-      company: "apple",
+      company: "desi",
       colors: ["#000000"],
       image:
         "images/pet/lion 3.jpg",
@@ -118,7 +118,7 @@ const data = [
     {
       id: "thapaserialnoc",
       name: "Cross Fox",
-      company: "apple",
+      company: "videsi",
       price: 300099,
       colors: ["#ff0000", "#22D3EF", "#000000"],
       image:
@@ -130,7 +130,7 @@ const data = [
     {
       id: "thapaserialnoc",
       name: "Arctic Fox",
-      company: "rolex",
+      company: "african",
       price: 999999,
       colors: ["#000000", "#CDD0D0"],
       image:
@@ -143,7 +143,7 @@ const data = [
       id: "thapaserialnoc",
       name: " Foxhound",
       price: 311999,
-      company: "samsung",
+      company: "jangli",
       colors: ["#22D3EF", "#ff0000", "#000000"],
       image:
         "images/pet/fox 3.jpg",

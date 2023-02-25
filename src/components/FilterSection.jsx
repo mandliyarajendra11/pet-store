@@ -40,7 +40,7 @@ const FilterSection = () => {
       </div>
       
       <div className='filter-company'>
-        <h3>company</h3>
+        <h3>Breeds</h3>
         <select name='company' id='company' className='filter-company--select' onChange={updateFilterValue}>
         {
         companyData.map((ele,i)=><option key={i} name="company" value={ele} >{ele}</option>)
