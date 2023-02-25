@@ -4,7 +4,7 @@ const CartContext=createContext();
 
 const getLocalCartData=()=>{
     let localCartData=localStorage.getItem("thapaCart");
-    if(localCartData===[])return [];
+    if(localCartData===[] || undefined)return [];
     else
     return JSON.parse(localCartData);
 }
@@ -17,8 +17,8 @@ const CartProvider=({children})=>{
     }
     const [state,dispatch]=useReducer(reducer,initialState);
 
-    const addToCart=(id,color,amount,product)=>{
-        dispatch({type:"ADD_TO_CART",payload:{id,color,amount,product}})
+    const addToCart=(id,color,amount,product,name)=>{
+        dispatch({type:"ADD_TO_CART",payload:{id,color,amount,product,name}})
     }
     const SetIncrement=(id)=>{
         dispatch({type:"SET_INC",payload:id})

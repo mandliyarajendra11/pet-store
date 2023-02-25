@@ -10,7 +10,7 @@ const HeroSection = (props) => {
     <div className='hero-section-data'>
         <p className='intro-data'>welcome to </p>
         <h1>{props.name}</h1>
-        <p>purchase pet & pet food and any type of item for pet </p>
+        <p>purchase pet/animals like you. and trite like your parents trite you </p>
          <NavLink to="##"><Button>Shop now</Button></NavLink>
          </div>
 

@@ -1,8 +1,9 @@
 import {useEffect,createContext, useContext, useReducer } from "react";
 import reducer from "../Reducer/ProductReducer";
 import axios from "axios";
- 
-const myContext=createContext();
+ import datas from '../Api/API';
+ import {thapaserialnoc, thapaserialnob,thapaserialnod, thapaserialnoe} from '../Api/SingleApi'
+ const myContext=createContext();
 
 const API = "https://api.pujakaitem.com/api/products";
 
@@ -23,18 +24,28 @@ const initialState={
         dispatch({type:"LOADING"})
         try{
     const res=await axios.get(url);
-const products=await res.data;
+// const products=await res.data;
+const products=datas
 dispatch({type:"MY_API_DATA",payload:products});
     }catch(error){
         dispatch({type:"API_ERROR"})
     }
 }
 
-const getSingleProduct=async(url)=>{
+const getSingleProduct=async({url,name})=>{
     dispatch({type:"single_data_loading"})
     try{
     const res=await axios.get(url);
-    const Singleproducts=await res.data;
+    // const Singleproducts=await res.data;
+    let Singleproducts;
+    if(name==="thapaserialnob")
+     Singleproducts=thapaserialnob
+    if(name==="thapaserialnoc")
+    Singleproducts=thapaserialnoc
+    if(name==="thapaserialnod")
+    Singleproducts=thapaserialnod
+    if(name==="thapaserialnoe")
+    Singleproducts=thapaserialnoe
     dispatch({type:"Set_Single_Product",payload:Singleproducts})
     }
     catch(error){

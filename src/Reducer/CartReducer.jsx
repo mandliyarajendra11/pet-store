@@ -4,12 +4,12 @@ const CartReducer = (state,action) => {
     switch (action.type) {
 
         case "ADD_TO_CART":
-           let {id,color,amount,product}=action.payload
-
+           let {id,color,amount,product,name}=action.payload
+         
             let cartProduct;
             cartProduct={
-              id:id+color,
-              name:product.name,
+              id:id+color+name,
+              name:name,
               color,
               amount, 
                image:product.image[0].url,
@@ -23,7 +23,7 @@ const CartReducer = (state,action) => {
   
       if (existingProduct) {
         let updatedProduct = state.cart.map((curElem) => {
-          if (curElem.id === id + color) {
+          if (curElem.id === id + color+name) {
             let newAmount = curElem.amount + amount;
   
             if (newAmount >= curElem.max) {

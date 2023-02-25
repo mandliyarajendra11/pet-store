@@ -10,7 +10,7 @@ return (
     products.map((ele)=>{
         const {id ,name,image,price,description}=ele
         return (
-        <div className="card grid grid-two-column">
+        <div className="card grid grid-two-column" key={id+name}>
             <figure>
                 <img src={image} alt={name} />
             </figure>
@@ -18,7 +18,7 @@ return (
                 <h3>{name}</h3>
                 <p><FormatPrice price={price}/></p>
                 <p>{description.slice(0,90)}....</p>
-                <NavLink  to={`/singleproduct/${id}`}><Button className="btn">Read more</Button></NavLink>
+                <NavLink  to={`/singleproduct/${id}/${name}`}><Button className="btn">Read more</Button></NavLink>
             </div>
         </div>
         )

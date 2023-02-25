@@ -5,7 +5,7 @@ const About = () => {
   return (
     <> 
 
-       <HeroSection name={"rajendra shop"}/>
+       <HeroSection name={"Animals shop"}/>
  </>
 
   )

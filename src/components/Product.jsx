@@ -4,7 +4,7 @@ import FormatPrice from '../Helpers/FormatPrice'
 const Product = ({ele}) => {
   const {id,name,image,price,category}=ele
     return (
-    <NavLink to={`/singleproduct/${id}`}>
+    <NavLink to={`/singleproduct/${id}/${name}`}>
         <div className="div">
             <figure>
                 <img src={image} alt={name}/>

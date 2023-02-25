@@ -14,10 +14,10 @@ const url ="https://api.pujakaitem.com/api/products"
 function SingleProduct() {
   //url id which is declear in app page router routes singleproduct 
   const {getSingleProduct,SingleProducts,SingleLoading}=useProductContext();
-  const {id}=useParams();
-  const {id:no,name,company,price,description,stock,stars,reviews,image}=SingleProducts
+  const {id,name}=useParams();
+  const {id:no,company,price,description,stock,stars,reviews,image}=SingleProducts
   useEffect(()=>{
-    getSingleProduct(`${url}?id=${id}`);
+    getSingleProduct({url:`${url}?id=${id}`,name:id});
   },[])
   if(SingleLoading)
  return <h3>data is loading</h3>
@@ -65,7 +65,7 @@ function SingleProduct() {
 <p>Brand : <span>{company}</span></p>
 </div>
 <hr/>
-{stock>0 && <AddToCart product={SingleProducts}/>}
+{stock>0 && <AddToCart products={{product:SingleProducts,name:name}}/>}
 </div>
       </div>
     </Container>
